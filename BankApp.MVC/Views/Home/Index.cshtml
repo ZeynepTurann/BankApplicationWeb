@@ -1,0 +1,43 @@
+﻿@model List<UserListModel> 
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+     <p>Index Works</p>
+</div>*@
+
+<table class="mt-4 table table-hover table-bordered table-sm">
+   <thead>
+        <tr>
+        <td>Name</td>
+        <td>SurName</td>
+        <td>Account Count</td>
+        <td></td>
+    </tr>
+   </thead>
+   <tbody>
+       @foreach(var item in Model)
+      {
+          <tr>
+              <td>@item.Name</td>
+              <td>@item.Surname</td>
+              <td> <getAccountCount application-user-id="@item.Id"></getAccountCount> </td>
+              <td>
+                  <a class="mr-3" asp-action="Create" asp-controller="Account" asp-route-id="@item.Id">Create A New Bank Account</a>
+                  <a asp-action="GetByUserId" asp-controller="Account" asp-route-userId="@item.Id">See Your Bank Accounts</a>
+              </td>
+          </tr>
+      }
+   </tbody>
+</table>
